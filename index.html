@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="author" content="Маргарита Анисковец">
+		<meta name="description" content="Веб-страница">
+		<title>JS</title>
+	</head>
+	<body>
+  <script>
+  	var list = [
+	{
+		distanceKm: 70,
+		timeMinutes: 30
+	},
+	{
+		distanceKm: 120,
+		timeMinutes: 70
+	},
+	{
+		distanceKm: 170,
+		timeMinutes: 80
+	},
+	{
+		distanceKm: 30,
+		timeMinutes: 10
+	},
+	{
+		distanceKm: 200,
+		timeMinutes: 120
+	}
+];
+function velocity(distanceKm,timeMinutes){
+	var vKmh = distanceKm / timeMinutes;
+	return vKmh;
+}
+
+var vMax = velocity(list[0].distanceKm, list[0].timeMinutes);
+
+for (var i = 1; i < list.length; i++){
+	var vKmh = velocity(
+		list[i].distanceKm,
+		list[i].timeMinutes);
+	if (vMax < vKmh) {
+		vMax = vKmh;
+	}
+}
+
+console.log(vMax);
+
+
+  </script>
+
+</body>
+</html>
