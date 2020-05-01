@@ -1,8 +1,18 @@
-var arr = ['Яблоко','Груша'];
-arr.unshift ('Банан');// 1) Добавить элемент в начало массива
-arr.push ('Слива');//2) Добавить элемент в конец массива
-arr.pop (); //3) Удалить элемент из массива (двумя способами)
-arr.shift();
+var fruits =['apple', 'orange', 'pineapple'];
+// 1) Добавить элемент в начало массива
+fruits.unshift ('banana');
+console.log(fruits)
+//2) Добавить элемент в конец массива
+fruits.push ('orange');
+console.log(fruits)
+//3) Удалить элемент из массива (двумя способами)
+fruits.pop ();
+console.log(fruits)
+fruits.shift();
+console.log(fruits)
+
+var removedItem = fruits.splice(2, 1);
+console.log(removedItem);
 
 //4) Удалить повторяющиеся значения из массива
 var array = [15, 1, 7, 10, 15, 8, 1, 6, 7];
@@ -19,6 +29,14 @@ var array = [15, 1, 7, 10, 15, 8, 1, 6, 7];
   return result;
 }
 console.log( unique(array) ); 
+//4 вариант с indexOf
+var array = [15, 1, 7, 10, 15, 8, 1, 6, 7];
+
+  result = array.filter(function(item, pos) {
+    return array.indexOf(item) === pos;
+});
+ console.log(result);
+
 
 
 //5) Массив содержит числа и строки. Вывести в консоль
@@ -46,20 +64,19 @@ for(var i=0; i<arr.length; i++){
 //"This is a number", если текущий тип - это number, "This is a string", 
 //если текущий тип - string и "This is some type", если текущий тип не string и не number
 
-var arr = [9,'flowers', 890n, true, null,undefined, Symbol,Math,alert];
+var arr = [9,'flowers', 890n, true, null,undefined, Symbol, Math, alert];
 
 for(var i=0; i<arr.length; i++){
   if(typeof arr[i] ==="string"){
     console.log('This is a string:'+' ' + arr[i]);
-  } else {
-    if (typeof arr[i] ==="number"){
+  } else if(typeof arr[i] ==="number"){
       console.log('This is a number:'+' ' + arr[i]);
     }
     else {
       console.log('This is some type:'+' ' + arr[i]);
     }    
-  }
-}
+  };
+
 //8) Массив содержит несколько объектов следующего вида:
 //{
 //    id: 1,
@@ -76,6 +93,17 @@ for(var i=0; i<arrObjects.length; i++){
     console.log(arrObjects[i].message);
   }
 }
+//9) Есть массив объектов, содержащих одно единственное поле title. Это поле является произвольной
+//строкой. Задача на его основе создать новый массив, в который будут помещены эти же объекты с 
+//дополнительным полем titleUppercased, содержащим строку title, но написанную заглавными буквами
+
+var arr = [{title: 'string'}];
+
+var arr2 = arr.map(function(item) { 
+  item.titleUppercased = item.title.toUpperCase();
+  return item; })
+
+console.log(arr2); 
 
 //10) Есть массив строк. Задача перебрать массив и вывести только
 // те элементы, в которых содержится буква 'u'
@@ -85,6 +113,15 @@ for(var i=0; i<arr.length; i++){
   var str = arr[i];
   str.split('');
  if(str.includes('u')){console.log(str)};
+}
+//10 вариант с indexOf
+var array = ['sub','right', 'gjjjjuf', 'grey','tour','use'];
+
+for(var i=0; i<array.length; i++) {
+  //var str = array[i];
+ if(array[i].indexOf('u') >= 0 ){
+   console.log(array[i])
+ }
 }
 //11) Есть массив произвольных чисел. Задача перебрать массив и вывести в 
 //консоль сообщение на каждую итерацию о том чётное перед нами число, либо нечётное
@@ -110,3 +147,4 @@ function calculate(calc){
   return arr;
 }
 console.log(calculate(int));
+
