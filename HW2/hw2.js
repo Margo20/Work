@@ -17,21 +17,6 @@ console.log(removedItem);
 //4) Удалить повторяющиеся значения из массива
 var array = [15, 1, 7, 10, 15, 8, 1, 6, 7];
 
- function unique(arr) {     
-  var result = [];
-
-  for (var num of arr) {
-    if (!result.includes(num)) {
-      result.push(num);
-    }
-  }
-
-  return result;
-}
-console.log( unique(array) ); 
-//4 вариант с indexOf
-var array = [15, 1, 7, 10, 15, 8, 1, 6, 7];
-
   result = array.filter(function(item, pos) {
     return array.indexOf(item) === pos;
 });
@@ -45,7 +30,7 @@ var array = [15, 1, 7, 10, 15, 8, 1, 6, 7];
 var arr = [2, 'flowers', 5,'greenbox',8, 16,'sonnydays','fox'];
 
 for(var i=0; i<arr.length; i++){
-  if(typeof arr[i] === "number" && arr[i] >7){
+  if(typeof arr[i] === 'number' && arr[i] >7){
     console.log(i + ' - ' + arr[i])
   };
 };
@@ -55,7 +40,7 @@ for(var i=0; i<arr.length; i++){
 var arr = [2, 'flowers', 5,'greenbox',8, 16,'sonnydays', 'fox'];
 
 for(var i=0; i<arr.length; i++){
-  if(typeof arr[i] ==="string"&& arr[i].length>5){
+  if(typeof arr[i] ==='string'&& arr[i].length>5){
     console.log(i + ' - ' + arr[i])
   };
 };
@@ -67,9 +52,9 @@ for(var i=0; i<arr.length; i++){
 var arr = [9,'flowers', 890n, true, null,undefined, Symbol, Math, alert];
 
 for(var i=0; i<arr.length; i++){
-  if(typeof arr[i] ==="string"){
+  if(typeof arr[i] ==='string'){
     console.log('This is a string:'+' ' + arr[i]);
-  } else if(typeof arr[i] ==="number"){
+  } else if(typeof arr[i] ==='number'){
       console.log('This is a number:'+' ' + arr[i]);
     }
     else {
@@ -108,13 +93,6 @@ console.log(arr2);
 //10) Есть массив строк. Задача перебрать массив и вывести только
 // те элементы, в которых содержится буква 'u'
 
-var arr = ['sub','right','grey','tour','use'];
-for(var i=0; i<arr.length; i++){
-  var str = arr[i];
-  str.split('');
- if(str.includes('u')){console.log(str)};
-}
-//10 вариант с indexOf
 var array = ['sub','right', 'gjjjjuf', 'grey','tour','use'];
 
 for(var i=0; i<array.length; i++) {
