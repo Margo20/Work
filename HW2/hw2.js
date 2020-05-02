@@ -83,11 +83,18 @@ for(var i=0; i<arrObjects.length; i++){
 //дополнительным полем titleUppercased, содержащим строку title, но написанную заглавными буквами
 
 var arr = [{title: 'string'}];
+var arr2 = [];
 
-var arr2 = arr.map(function(item) { 
-  item.titleUppercased = item.title.toUpperCase();
-  return item; })
-
+for(var i=0; i<arr.length; i++) {
+  var item ={}
+  
+  item.title = arr[i].title;
+  item.titleUppercased = arr[i].title.toUpperCase();
+  
+  arr2.push(item);
+   
+}
+console.log(arr); 
 console.log(arr2); 
 
 //10) Есть массив строк. Задача перебрать массив и вывести только
@@ -114,15 +121,16 @@ for(var i=0; i<arr.length; i++){
  // и возвращает квадрат этого числа. Вторая функция принимает первую как аргумент, 
  // вызывает её у себя внутри, передав любое число. Результат вызова кладёт в пустой 
  // массив и возвращает
-function int(num){
+function multi(num){
   
-	return num*num;
-};
-function calculate(calc){
-	var arr = [];
-    arr.push(calc(5));
-  
+  return num*num;
+}
+
+function addToArr(funct){
+  var arr = [];
+  arr.push(funct(5));
   return arr;
 }
-console.log(calculate(int));
+
+console.log(addToArr(multi));
 
