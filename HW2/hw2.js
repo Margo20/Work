@@ -74,7 +74,7 @@ var arrObjects = [{id: 7,message: 'first',isHidden: true},
                   {id: 13,message: 'second',isHidden: false},
                  {id: 3,message: 'third',isHidden: false}];
 for(var i=0; i<arrObjects.length; i++){
-  if(arrObjects[i].isHidden!=true){
+  if (!arrObjects[i].isHidden){
     console.log(arrObjects[i].message);
   }
 }
