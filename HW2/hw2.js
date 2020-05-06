@@ -103,7 +103,6 @@ console.log(arr2);
 var array = ['sub','right', 'gjjjjuf', 'grey','tour','use'];
 
 for(var i=0; i<array.length; i++) {
-  //var str = array[i];
  if(array[i].indexOf('u') >= 0 ){
    console.log(array[i])
  }
