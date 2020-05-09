@@ -1,7 +1,8 @@
 body{
   background:#e9af01;
   font-family: sans-serif;
-	font-weight: 400;
+  font-weight: 400;
+  position: relative;
 }
 
 .b-tasks{
@@ -9,11 +10,12 @@ body{
   background: #9a2837;
   padding: 0 20px;
   color: #fff;
-  width: 30%;
-  height: 250px;
+  max-width: 500px;
   text-align: left;
-  margin-left: 35%;
-  margin-top: 50px; 
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 45px auto;
 }
 
 .l-tasks__item{
@@ -33,7 +35,7 @@ body{
   padding: 10px;
 }
 
-.l-tasks__item > .l-tasks__inner{
+ .l-tasks__inner{
   padding: 0 0 15px 0;
   font-style: italic;
 }
