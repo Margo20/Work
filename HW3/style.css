@@ -1,11 +1,12 @@
-body{
-  background:#e9af01;
+body {
+  background: #e9af01;
   font-family: sans-serif;
   font-weight: 400;
   position: relative;
+  padding-top: 45px;
 }
 
-.b-tasks{
+.b-tasks {
   box-shadow: 3px 5px 15px #000;
   background: #9a2837;
   padding: 0 20px;
@@ -15,40 +16,41 @@ body{
   position: absolute;
   left: 0;
   right: 0;
-  margin: 45px auto;
+  margin: 0 auto; 
 }
 
-.l-tasks__item{
+.l-tasks__item {
   border-bottom: 1px dashed #c4c4c4;
-  padding:15px 0;
+  padding: 15px 0;
   display: block;
 }
 
-.l-tasks__item:nth-child(3){
-  border-bottom:none;
+.l-tasks__item:nth-child(3) {
+  border-bottom: none;
 }
 
-.l-tasks__btn{
+.l-tasks__btn {
   background-color: #c4c4c4;
   font-size: 15px;
-  color:#9a2837;
+  color: #9a2837;
   padding: 10px;
 }
 
- .l-tasks__inner{
+.l-tasks__inner {
   padding: 0 0 15px 0;
   font-style: italic;
 }
 
-
-._color-schemie-light{
+._color-schemie-light {
 	background: #f9f9f9;
 }
-._color-schemie-light .l-tasks__btn{
+
+._color-schemie-light .l-tasks__btn {
   background-color: #555354;
-  color:#fff;
+  color: #fff;
 }
-._color-schemie-light>.b-tasks{
+
+._color-schemie-light > .b-tasks {
   background-color: #d3af56;
-  color:#000;
+  color: #000;
 }
