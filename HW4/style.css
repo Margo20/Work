@@ -10,8 +10,6 @@ body {
 	background-size: cover;
   max-width: 1000px;
   height: 80%;
-  left: 0;
-  right: 0;
   margin: 0 auto; 
 }
 
@@ -19,10 +17,10 @@ body {
   position: absolute;
   width: 100px;
   height: 100px;
-  top: 0px;  
-  left: 0px;
+  top: 0;  
+  left: 0;
   transform: translate(580px, 150px);
-  transition: transform .2s 0 ease-in-out;
+  transition: transform .2s ease-in-out;
 }
 
 

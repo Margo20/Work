@@ -1,33 +1,39 @@
 var univ = document.querySelector('.b-universe');
 var earth = document.querySelector('.b-universe__img');
-var earthWidth = earth.width /2 ;
-var earthHeight = earth.height /2 ;
+var earthHalfWidth = earth.width / 2 ;
+var earthHalfHeight = earth.height / 2 ;
+var calcY = univ.offsetHeight - earth.height;
+var calcX = univ.offsetWidth - earth.width;
+
 
 univ.addEventListener('click', function(e) {
- if (e.target.tagName === 'DIV' && earth.style.display !== 'none') {
-    var x = e.offsetX;
-    var y = e.offsetY;
+  var x = e.offsetX - earthHalfWidth;
+  var y = e.offsetY - earthHalfHeight;
 
-    if (y >= univ.offsetHeight - earthHeight) {
-      y = univ.offsetHeight - earthHeight;
-    }
-    if (y < earthHeight) {
-      y = earthHeight;
-    }
-    if (x >= univ.offsetWidth - earthWidth) {
-      x = univ.offsetWidth - earthWidth;
-    }
-    if (x < earthWidth) {
-      x = earthWidth;
-    }
-      earth.style.transform = 'translate(' + (x - 50) + 'px, ' + (y - 50) + 'px)';
-  }
+
   if (e.target.tagName === 'IMG') {
     earth.style.display = 'none';
-  } else if (e.target.tagName === 'DIV'){
+
+    return;
+  }
+
+  if (earth.style.display === 'none') {
     earth.style.display = '';
 
-   return; 
+    return;
   }
-});
+  
+  if (y >= calcY) {
+    y = calcY;
+  } else if (y < earthHalfHeight) {
+    y = 0;
+  }
 
+  if (x >= calcX) {
+    x = calcX;
+  } else if (x < earthHalfWidth) {
+    x = 0;
+  }
+
+  earth.style.transform = 'translate(' + x + 'px, ' + y + 'px)';  
+});
