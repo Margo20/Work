@@ -1,10 +1,9 @@
-(function(){
   var univ = document.querySelector('.b-universe');
-  var earth = document.querySelector('.b-universe_img');
+  var earth = document.querySelector('.b-universe__img');
   var earthWidth = earth.width / 2;
   var earthHeight = earth.height / 2;
   univ.addEventListener('click', function(e) {
-   if (e.target.tagName == "DIV" && earth.style.display !== 'none') {
+   if (e.target.tagName === 'DIV' && earth.style.display !== 'none') {
       var x = e.offsetX;
       var y = e.offsetY;
       if (y >= univ.offsetHeight - earthHeight) {
@@ -22,10 +21,12 @@
         earth.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
     }
 
-    if (e.target.tagName == "IMG") {
+    if (e.target.tagName === 'IMG') {
       earth.style.display = 'none';
-    } else if (earth.style.display == 'none' && e.target.tagName == "DIV"){
+    } else if (e.target.tagName === 'DIV'){
       earth.style.display = '';
+
+     return; 
     }
   });
-})();
+
