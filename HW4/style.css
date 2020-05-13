@@ -19,9 +19,10 @@ body {
   position: absolute;
   width: 100px;
   height: 100px;
-  top: -50px;  
-  left: -50px;
-  transform: translate(580px, 150px)
+  top: 0px;  
+  left: 0px;
+  transform: translate(580px, 150px);
+  transition: transform .2s 0 ease-in-out;
 }
 
 
