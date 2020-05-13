@@ -1,0 +1,27 @@
+body {
+  background-color: #1a507b;
+  padding-top: 45px;
+}
+
+.b-universe {
+  position: relative;
+  background-image: url(galaxy.jpg);
+	background-position: center center;
+	background-size: cover;
+  max-width: 1000px;
+  height: 80%;
+  left: 0;
+  right: 0;
+  margin: 0 auto; 
+}
+
+.b-universe_img {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: -50px;
+  top: -50px;
+}
+
+
+
