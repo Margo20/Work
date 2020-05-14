@@ -25,13 +25,13 @@ univ.addEventListener('click', function(e) {
   
   if (y >= calcY) {
     y = calcY;
-  } else if (y < earthHalfHeight) {
+  } else if (y < 0) {
     y = 0;
   }
 
   if (x >= calcX) {
     x = calcX;
-  } else if (x < earthHalfWidth) {
+  } else if (x < 0) {
     x = 0;
   }
 
