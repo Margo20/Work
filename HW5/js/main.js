@@ -1,5 +1,5 @@
 var body = document.body;
-var form = document.querySelector('f-default');
+var form = document.querySelector('form');
 
 body.addEventListener('click', function(e){
     event.stopImmediatePropagation();
@@ -15,15 +15,12 @@ body.addEventListener('click', function(e) {
 });
 
 form.addEventListener('submit', function(e) {
-    e.preventDefault();
 
     var emailValue = e.target.elements.email.value;
     var passwordValue = e.target.elements.password.value;
 
-    if (!emailValue || !passwordValue) {
-        alert('Поля не должны быть пустыми');
-    }else if (passwordValue && passwordValue.length < 10) {
-        alert('Параль должен быть не меньше 10 символов');
+    if (passwordValue && passwordValue.length < 10) {
+        alert ('Параль должен быть не меньше 10 символов');
     }
 });
 
