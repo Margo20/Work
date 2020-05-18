@@ -1,8 +1,9 @@
 var body = document.body;
 var form = document.querySelector('.f-default');
+var butt = document.querySelector('.f-default__btn');
 
 body.addEventListener('click', function(e){
-    event.stopImmediatePropagation();
+    e.stopImmediatePropagation();
     console.log('BODY_1');
 });
 
@@ -25,6 +26,10 @@ form.addEventListener('submit', function(e) {
     } else if (passwordValue && passwordValue.length < 10) {
         alert('Параль должен быть не меньше 10 символов');
     }
+});
+
+butt.addEventListener('click', function(e){
+    e.stopImmediatePropagation();
 });
 
 
