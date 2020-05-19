@@ -7,11 +7,11 @@ body.addEventListener('click', function(e){
     console.log('BODY_1');
 });
 
-body.addEventListener('click', function(e) {
+body.addEventListener('click', function() {
     console.log('BODY_2');
 });
 
-body.addEventListener('click', function(e) {
+body.addEventListener('click', function() {
     console.log('BODY_3');
 });
 
@@ -29,8 +29,9 @@ form.addEventListener('submit', function(e) {
 });
 
 butt.addEventListener('click', function(e){
-    e.stopImmediatePropagation();
+    e.stopPropagation();
 });
+
 
 
 
