@@ -1,0 +1,13 @@
+body {
+  /* transform: translate(580px, 150px); */
+  transition: transform 4s ease-in-out;
+}
+
+.btn {
+	background-color: blueviolet;	
+	width: 500px;
+	height: 40px;
+	color: #fff;
+	font-size: 20px;
+}
+
