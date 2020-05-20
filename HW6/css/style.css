@@ -1,6 +1,6 @@
 body {
-  /* transform: translate(580px, 150px); */
-  transition: transform 4s ease-in-out;
+    transition-property: background-color;
+    transition-duration: .2s;
 }
 
 .btn {
