@@ -7,6 +7,10 @@ console.log(namesCopy);
 // 2) Создайте объект с произвольными свойствами. Скопируйте объект таким образом,
 //   чтобы изменение копии не мутировало оригинал.
 //1) For... in  вариант
+var car = {
+  name: 'Volvo',
+  color: 'red'
+};
 function copy(car){
   var copyCar = {};
   var key;
@@ -16,10 +20,6 @@ function copy(car){
   }
   return copyCar;
 }
-var car = {
-  name: 'Volvo',
-  color: 'red'
-};
 console.log(copy(car));
 console.log(car);
 
@@ -42,9 +42,9 @@ function printSquareRoot(num, someFunc) {
   someFunc(num);
 };
 var calc = function (i) {
-  console.log(i * i)
+  console.log(Math.sqrt(i))
 };
-var squareRoot = printSquareRoot(5, calc);
+var squareRoot = printSquareRoot(9, calc);
 
 // 4) Внутри функции имеется пустой массив. Организуйте замыкание по аналогии со счётчиком,
 // чтобы пустой массив наполнялся из аргументов вызова. Напишите проверку на количество элементов.
@@ -55,7 +55,7 @@ function addArr() {
   var arr = [];
 
   function fillUp(obj) {
-    if (arr.length >= 5) {
+    if (arr.length === 5) {
       arr.length = 0;
     }
     arr.push(obj);
@@ -66,7 +66,8 @@ function addArr() {
 }
 
 var funcWithClosure = addArr();
-for (i = 1; i < 12; i++) {
-  funcWithClosure('A' + i);
+for (var i = 1; i < 12; i++) {
+    funcWithClosure('A' + i);
 }
+
 

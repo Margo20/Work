@@ -7,9 +7,8 @@ var btn = document.querySelector('.btn');
 var funcWithClosure = function () {
   var num = 0;
 
-  function addToNum() {
-    num++;
-    btn.textContent = 'Количество нажатий: ' + num;
+  function addToNum(e) {
+    e.currentTarget.textContent = 'Количество нажатий: ' + ++num;
   }
 
   return addToNum;
@@ -18,8 +17,6 @@ var funcWithClosure = function () {
 var funcOnClick = funcWithClosure();
 
 btn.addEventListener('click', funcOnClick );
-
-
 
 
 
