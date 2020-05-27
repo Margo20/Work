@@ -1,0 +1,36 @@
+body {
+	height: auto;
+	padding: 50px;
+	font-family: sans-serif;
+	background: #1e4542;
+}
+
+.b-shooter {
+	background-image: url(../img/cemetery-cartoon-background.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	display: flex;
+	max-width: 1000px;
+	height: 850px;
+	margin: 0 auto;
+}
+
+.b-shooter__img-aim {
+	/*position: absolute;*/
+	/*top: 50px;*/
+	/*left: 50px;*/
+	position: relative;
+	height: 100px;
+	width: 100px;
+	transform: translate(345px, 180px);
+}
+
+.b-shooter__aim {
+	/*position: relative;*/
+	top: 0;
+	left: 0;
+	height: 200px;
+	width: 200px;
+	/*transform: translate(345px, 180px);*/
+}
