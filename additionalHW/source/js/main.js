@@ -28,8 +28,8 @@
   document.addEventListener('keydown', function(e) {
     var isEnterKey = e.code === 'Enter';
     var domRect = imgAim.getBoundingClientRect();
-    var aimCenterX = domRect.left / 2;
-    var aimCenterY = domRect.top / 2;
+    var aimCenterX = domRect.x / 2;
+    var aimCenterY = domRect.y / 2;
 
     if (isEnterKey) {
       imgAim.style.transform = 'scale(0.9)';
@@ -43,46 +43,30 @@
     var isEnterKey = e.code === 'Enter';
 
     if (isEnterKey) {
-      imgAim.style.transform = 'scale(1)';
+      imgAim.style.transform = '';
     };
   });
 
-
   function setRandomCoords() {
-    var cemeteryWidth = cemetery.offsetWidth;
-    var cemeteryHeight = cemetery.offsetHeight;
-    var ghostWidth = ghost.offsetWidth;
-    var ghostHeight = ghost.offsetHeight;
-    var calcLeft = cemeteryWidth - ghostWidth*2;
-    var calcTop = cemeteryHeight - ghostHeight*2;
-    var RandomX = Math.floor(Math.random() * calcLeft) + ghostWidth;
-    var RandomY = Math.floor(Math.random() * calcTop) + ghostHeight;
-    var x = RandomX;
-    var y = RandomY;
+    var limitX = cemetery.offsetWidth - ghost.offsetWidth;
+    var limitY = cemetery.offsetHeight - ghost.offsetHeight;
+    var x = Math.floor(Math.random() * (limitX + 1));
+    var y = Math.floor(Math.random() * (limitY + 1));
 
-    ghost.style.cssText = 'left: RandomX; top: RandomY;';
-
-    if (x >= calcLeft) {
-      x = calcLeft;
-    } else if (x < 0) {
-      x = 0;
-    }
-
-    if (y >= calcTop) {
-      y = calcTop;
-    } else if (y < 0) {
-      y = 0;
-    }
-
-    ghost.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+    ghost.style.cssText = 'transform: translate(' + x + 'px, ' + y + 'px);';
   };
 
-  var timerId = setInterval(function () {
-    if (ghost.style='display: none;') {
-      ghost.style='display: block;';
-    }
+  if (ghost.style.display === 'none') {
+    ghost.style.display = '';
+  }
+
+  setInterval(function () {
+
     setRandomCoords();
   }, 3000);
+
+
+
 
 
 
