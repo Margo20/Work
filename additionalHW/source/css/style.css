@@ -30,8 +30,28 @@ body {
 	width: 100%;
 }
 
+.b-shooter__img-fire {
+	position: absolute;
+	height: 90px;
+	width: 90px;
+	opacity: 0.2;
+	/*transition: width .2s, height .2s ease-in;*/
+}
+
+.b-shooter__img-fire:hover {
+	transition: width .1s, height .1s ease-in;
+	opacity: 1.0;
+	width: 100px;
+	height: 150px;
+	top: -45px;
+	left: 0;
+}
+
 .b-shooter__img-ghost {
 	position: absolute;
 	height: 120px;
 	width: 120px;
+	opacity: 1;
+	transition:  ease-in;
+
 }

@@ -57,7 +57,7 @@
   };
 
   if (ghost.style.display === 'none') {
-    ghost.style.display = '';
+    ghost.style.display = ''; 
   }
 
   setInterval(function () {
