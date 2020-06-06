@@ -30,7 +30,7 @@
     }
   ];
 
-  let obj7 = arr7.reduce(function(total,item) {
+  const obj7 = arr7.reduce(function(total,item) {
     item.country==='USA' ? total.usa.push(item.city) : total.europe.push(item.city);
 
     return total;
@@ -38,7 +38,7 @@
   console.log(obj7);
   // 3) Найдите минимальный элемент произвольного массива чисел используя Math и синтаксис es5.
   // Найдите максимальный элемент того же массива, используя Math и синтаксис es6.
-   let arr = [1, 5, 7, 13, 8, -3];
+  const arr = [1, 5, 7, 13, 8, -3];
 
     console.log(
     Math.min.apply(null,arr)
@@ -59,29 +59,24 @@
 
   // 5) Реализуйте чейн. Вначале задаётся число, затем выполняются арифметические действия,
   //   в конце результат выводится в консоль  setNum(10).plus(7).minus(2).showNum() // 10 + 7 - 2
-  let count = {
-    num : 0,
-    setNum(arg) {
-      this.num = arg;
 
-      return this;
-    },
-    plus(arg) {
-      this.num += arg;
-
-      return this;
-    },
-    minus(arg) {
-      this.num -= arg;
-
-      return this;
-    },
-    showNum() {
-      console.log(this.num);
+  function setNum (num) {
+    return {
+      plus (arg) {
+        num += arg;
+        return this;
+      },
+      minus (arg) {
+        num -= arg;
+        return this;
+      },
+      showNum () {
+        console.log(num);
+      }
     }
-  };
+  }
 
-  count.setNum(10).plus(7).minus(2).showNum();
+  setNum(10).plus(7).minus(2).showNum();
 
   // 6) Выполните деструктурирующее присваивание переменным полей объекта, полученного в пункте 2.
   const obJ = {
