@@ -18,40 +18,33 @@ body {
 
 .b-shooter__aim {
 	position: absolute;
-	height: 100px;
-	width: 100px;
+	height: 90px;
+	width: 90px;
 	transform: translate(345px, 180px);
 	transition: transform .2s ease-in-out;
+	pointer-events: none;
+	z-index: 1;
 }
 
 .b-shooter__img-aim {
-	position: absolute;
 	height: 100%;
 	width: 100%;
 }
 
 .b-shooter__img-fire {
 	position: absolute;
-	height: 90px;
-	width: 90px;
-	opacity: 0.2;
-	/*transition: width .2s, height .2s ease-in;*/
-}
-
-.b-shooter__img-fire:hover {
-	transition: width .1s, height .1s ease-in;
-	opacity: 1.0;
-	width: 100px;
-	height: 150px;
-	top: -45px;
 	left: 0;
+	bottom: 0;
+	visibility: hidden;
+	transition-timing-function: ease-in;
+	transition: opacity;
 }
 
 .b-shooter__img-ghost {
 	position: absolute;
 	height: 120px;
 	width: 120px;
-	opacity: 1;
-	transition:  ease-in;
-
+	/*opacity: 1;*/
+	transition: opacity;
+	pointer-events: none;
 }
