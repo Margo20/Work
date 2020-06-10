@@ -6,33 +6,35 @@
   var delayToReset = 500;
 
   cemetery.addEventListener('click', function(e) {
-    var calcY = e.currentTarget.offsetHeight - aim.offsetHeight;
-    var calcX = e.currentTarget.offsetWidth - aim.offsetWidth;
-    var y = e.offsetY - imgAim.height / 2 ;
-    var x = e.offsetX - imgAim.width / 2 ;
+    if (ghost.style['animation-play-state'] !== 'paused') {
+      var calcY = e.currentTarget.offsetHeight - aim.offsetHeight;
+      var calcX = e.currentTarget.offsetWidth - aim.offsetWidth;
+      var y = e.offsetY - imgAim.height / 2;
+      var x = e.offsetX - imgAim.width / 2;
 
-    if (y >= calcY) {
-      y = calcY;
-    } else if (y < 0) {
-      y = 0;
-    }
+      if (y >= calcY) {
+        y = calcY;
+      } else if (y < 0) {
+        y = 0;
+      }
 
-    if (x >= calcX) {
-      x = calcX;
-    } else if (x < 0) {
-      x = 0;
+      if (x >= calcX) {
+        x = calcX;
+      } else if (x < 0) {
+        x = 0;
+      }
+      aim.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
     }
-    aim.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
   });
 
   document.addEventListener('keydown', function(e) {
-    if (e.code === 'Enter') {
+    if (e.code === 'Enter'|| e.code === 'NumpadEnter') {
       imgAim.style.transform = 'scale(0.9)';
     }
   });
 
   document.addEventListener('keyup', function(e) {
-    if (e.code === 'Enter') {
+    if (e.code === 'Enter'|| e.code === 'NumpadEnter') {
       var domRect = imgAim.getBoundingClientRect();
       var domGhost = ghost.getBoundingClientRect();
       var aimCenterX = domRect.width / 2 + domRect.x;
@@ -47,13 +49,14 @@
         && aimCenterY >= domGhost.top -20
         && aimCenterY <= domGhost.bottom + 20
       ) {
-        var animationGhost = `opacity: 0; transition-duration: ${delayToReset * 0.6}ms;
+        let animationGhost = `opacity: 0; transition-duration: ${delayToReset * 0.6}ms;
                 transition-delay: ${delayToReset * 0.4}ms;`;
 
         ghost.style.cssText += animationGhost;
+        fire.style.cssText += animationGhost;
+        ghost.style['animation-play-state'] = 'paused';
+        fire.style.visibility = 'visible';
         imgAim.style.display = 'none';
-        fire.style.cssText = `opacity: 0; transition-duration: ${delayToReset * 0.6}ms;
-                visibility: visible; transition-delay: ${delayToReset * 0.4}ms;`;
 
         setTimeout(function() {
           fire.removeAttribute('style');
@@ -61,6 +64,7 @@
           imgAim.style.display = '';
           ghost.removeAttribute('style');
           ghost.style.display = 'none';
+          ghost.style['animation-play-state'] = 'running';
         }, delayToReset);
       };
     };
@@ -71,6 +75,7 @@
     var limitY = cemetery.offsetHeight - ghost.offsetHeight;
     var x = Math.floor(Math.random() * (limitX + 1));
     var y = Math.floor(Math.random() * (limitY + 1));
+
     ghost.style.left = x + 'px';
     ghost.style.top = y + 'px';
   };
@@ -79,5 +84,7 @@
     if (ghost.style.display === 'none') {
       ghost.style.display = '';
     }
-    setRandomCoords();
+    if (ghost.style['animation-play-state'] !== 'paused') {
+      setRandomCoords();
+    }
   }, 3000);
