@@ -1,5 +1,31 @@
   'use strict'
 
+  function createTotalArr(arr1, arr2){
+    let totalArr = [];
+
+    for (let i=0; i < arr1.length; i++) {
+
+      for (let j=0; j < arr2.length; j++) {
+
+        if (arr1[i].id === arr2[j].userId) {
+          //console.log("find: i = " + i + ", j = " + j + ", ID =" + arr1[i].id);
+
+          let newObj1 = Object.assign({}, arr1[i]);
+          let newObj2 = Object.assign({}, arr2[j]);
+          let newObj = {
+            ...newObj1,
+            ...newObj2
+          }
+
+          totalArr.push(newObj);
+
+          break;
+        }
+      }
+    }
+      console.log(totalArr);
+    }
+
   setTimeout(function () {
     const users = [
       {
@@ -28,12 +54,6 @@
         lastName: 'Taylor'
       }
     ];
-    let j;
-
-    for (j = 0; j <= users.length; j++) {
-      const r = Object.values(users[j]);
-      console.log(r);
-    }
 
     setTimeout(function () {
       const countries = [
@@ -58,25 +78,12 @@
           country: 'Ireland'
         }
       ];
-      let i;
 
-      for (i = 0; i <= countries.length; i++) {
-        const d = Object.values(countries[i]);
-        console.log(d);
-      }
-    }, 2000);
+      createTotalArr(users, countries);
+    }, 500);
+  }, 500);
 
-  }, 2000);
 
-  let arr = [];
-  if ((users[j].id) === (countries[i].id)) {
-    const newObject = {
-      ...users,
-      country: Object.values(countries[i])
-    };
-    arr.push(newObject);
-    console.log(arr);
-  } ;
 
   // var arr = [" firstName", " lastName", " country"];
   // html = '<ul>';
@@ -87,8 +94,8 @@
   //
   // document.write(html);
 
-  export {request}
-  export default request1
+  // export {createTotalArr}
+  // export default setTimeout
 
   // function createList() {
   //   return document.createElement('ul');
