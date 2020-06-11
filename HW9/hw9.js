@@ -57,6 +57,7 @@ const requestForUsers = function (cb) {
       lastName: 'Taylor'
     }
   ];
+
   setTimeout(function () {
     cb(users);
   }, 500);
@@ -65,45 +66,42 @@ const requestForUsers = function (cb) {
 requestForUsers(function (users) {
 
   requestForCountries(function (countries) {
-    // console.log(countries);
-    // console.log(users);
-  });
-});
+    const totalArr = users.map(user => {
+      let i;
+      const country = countries.find((currentValue) => currentValue.userId === user.id)
 
-  const totalArr = users.map (user => {
-    const country = countries.find((currentValue) => currentValue.userId === users[i].id)
-
-    return {
-      ...users[i],
-      country
-    };
-    console.log(totalArr);
-  })
-
-const country = countries.find((currentValue) => currentValue.userId === users[i].id)
-
-
+      return {
+        ...user,
+        country: country.country
+      };
+    })
 
     function createList() {
       return document.createElement('ul');
     };
 
-    function createListItem({ fistName, lastName, country }) {
-    const li = document.createElement('li');
-      li.innerText = `fistName: ${text1} , lastName: ${text2} , country: ${text3}`;
+    function createListItem({fistName, lastName, country}) {
+      const li = document.createElement('li');
+      li.innerText = `${fistName} ${lastName}, ${country}`;
 
       return li;
     };
 
     totalArr.forEach(function (x) {
       const ul = createList();
-      const li = createListItem(x.fistName, x.lastName, x.country);
+      // const li = createListItem(x.fistName, x.lastName, x.country);
+      const li = createListItem(x);
 
       ul.appendChild(li);
       document.body.appendChild(ul);
     });
-//     //
-//     // export {requestForUsers}
-//     // export default requestForCountries;
-//   });
-// });
+
+    console.log(totalArr);
+    console.log(countries);
+    console.log(users);
+  });
+});
+export {requestForUsers}
+export default requestForCountries;
+
+
