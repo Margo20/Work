@@ -67,12 +67,11 @@ requestForUsers(function (users) {
 
   requestForCountries(function (countries) {
     const totalArr = users.map(user => {
-      let i;
-      const country = countries.find((currentValue) => currentValue.userId === user.id)
+      const {country} = countries.find((currentValue) => currentValue.userId === user.id)
 
       return {
         ...user,
-        country: country.country
+        country
       };
     })
 
@@ -89,7 +88,6 @@ requestForUsers(function (users) {
 
     totalArr.forEach(function (x) {
       const ul = createList();
-      // const li = createListItem(x.fistName, x.lastName, x.country);
       const li = createListItem(x);
 
       ul.appendChild(li);
@@ -103,5 +101,4 @@ requestForUsers(function (users) {
 });
 export {requestForUsers}
 export default requestForCountries;
-
 
