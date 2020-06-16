@@ -1,31 +1,5 @@
 'use strict'
-
-const h1 = document.querySelector('h1');
-const isError = () => Math.floor(Math.random()*11) < 5;
-// const requestInfo = {
-//   total: 2,
-//   done: 0,
-//   isError: false
-// };
-// let users = [];
-// let countries = [];
-//
-// function registerRequest(isError) {
-//   requestInfo.done++;
-//
-//   if (isError) {
-//     requestInfo.isError = true;
-//   }
-//
-//   if (requestInfo.total === requestInfo.done){
-//     console.log('Done');
-//   }
-// }
-function printInfo() {
-  h1.innerText = 'Array are completely received';
-  // console.log(users);
-  // console.log(countries);
-}
+const isError = () => Math.floor(Math.random()*10) < 5;
 
 const requestForCountries = function (success, error) {
   const countries = [
@@ -58,7 +32,6 @@ const requestForCountries = function (success, error) {
         message: 'Internal server Error'
       });
     } else {
-        printInfo();
         success(countries);
       }
   }, 500);
@@ -101,67 +74,9 @@ const requestForUsers = function (fnSuccess, fnError) {
       });
     } else {
       fnSuccess(users);
-      printInfo();
     }
   }, 500);
 };
-
-function errorHandler(error) {
-  h1.innerText = error.message;
-  console.log(error);
-}
-// function arrNew() {
-//   const totalArr = users.map(user => {
-//     const {country} = countries.find((currentValue) => currentValue.userId === user.id)
-//     return {
-//       ...user,
-//       country
-//     };
-//     console.log(users);
-//     console.log(countries);
-//     console.log(totalArr);
-//   })
-// }
-
-// requestForUsers(
-//   u => {
-//     users = [...u];
-//     registerRequest(false);
-//     arrNew();
-//   },
-//   err => {
-//     registerRequest(true);
-//     errorHandler();
-//   });
-//
-// requestForCountries(
-//   c => {
-//     countries = [...c];
-//     registerRequest(false);
-//     arrNew();
-//   },
-//   err => {
-//     registerRequest(true);
-//     errorHandler();
-//   });
-
-
-requestForUsers(function (users) {
-  requestForCountries(function (countries) {
-
-      const totalArr = users.map(user => {
-        const {country} = countries.find((currentValue) => currentValue.userId === user.id)
-        return {
-          ...user,
-          country
-        };
-        console.log(totalArr);
-      })
-      console.log(users);
-      console.log(countries);
-    }, errorHandler  )
-
-  }, errorHandler );
 
 export {requestForUsers, requestForCountries}
 
