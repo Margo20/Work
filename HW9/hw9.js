@@ -7,24 +7,6 @@ const totalArr = [];
 let users;
 let countries;
 
-// const requestInfo = {
-//   total: 2,
-//   done: 0,
-//   isError: false
-// };
-//
-// function registerRequest(isError) {
-//   requestInfo.done++;
-//
-//   if (isError) {
-//     requestInfo.isError = true;
-//   }
-//
-//   if(requestInfo.total === requestInfo.done) {
-//     printInfo(requestInfo.isError);
-//   }
-// };
-
 function createList() {
   return document.createElement('ul');
 };
@@ -46,38 +28,29 @@ function printHtml(arr) {
   });
   document.body.appendChild(ul);
 }
-function getSomething(newUsers, newCountries) {
-  if (newUsers !== undefined) {
-    users = newUsers;
-  }
-  if (newCountries !== undefined) {
-    countries = newCountries;
-  }
-
-  if (users !== undefined && countries !== undefined){
+function getSomething() {
+  if (Array.isArray(users) && Array.isArray(countries)) {
     const totalArr = users.map(user => {
       const {country} = countries.find((currentValue) => currentValue.userId === user.id)
       return {
         ...user,
         country
       };
-      console.log(totalArr);
-      printInfo();
     })
+    console.log(totalArr);
+    printInfo();
     printHtml(totalArr);
   }
 }
 
-requestForUsers(function (users) {
-  getSomething(users, undefined);
-
-  // registerRequest(false);
+requestForUsers(function (res) {
+  users = res;
+  getSomething();
 }, errorHandler );
 
-requestForCountries(function (countries) {
-  getSomething(undefined,countries );
-
-  // registerRequest(false);
+requestForCountries(function (res) {
+  countries = res;
+  getSomething();
 }, errorHandler );
 
 function errorHandler(error) {
@@ -88,26 +61,3 @@ function errorHandler(error) {
 function printInfo() {
   h1.innerText = 'Array are completely received';
 }
-
-
-// requestForUsers(function (users) {
-//   printInfo();
-//   requestForCountries(function (countries) {
-//
-//     printInfo();
-//     const totalArr = users.map(user => {
-//       const {country} = countries.find((currentValue) => currentValue.userId === user.id)
-//       return {
-//         ...user,
-//         country
-//       };
-//       console.log(totalArr);
-//     })
-//     console.log(users);
-//     console.log(countries);
-//     printHtml(totalArr);
-//   }, errorHandler  )
-//
-// }, errorHandler );
-
-
