@@ -1,11 +1,35 @@
 'use strict'
 
-let su = function (x) {
-};
-let er = function (a, b) {
+const errorFn = function (err) {
+  console.log(err);
 };
 
-const requestForUsers = function (pp, success, error) {
+let male;
+let female;
+
+function createList() {
+  return document.createElement('ul');
+};
+
+function createListItem({name, picture}) {
+  const li = document.createElement('li');
+  li.innerText = `${name},${picture}`;
+
+  return li;
+};
+
+function printHtml(arr) {
+  const ul = createList();
+
+  arr.forEach(function (el) {
+    const li = createListItem(el);
+
+    ul.appendChild(li);
+  });
+  document.body.appendChild(ul);
+}
+
+const requestForUsers = function (res, success, error) {
   const xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = function () {
@@ -15,16 +39,35 @@ const requestForUsers = function (pp, success, error) {
 
         console.log(JSON.parse(xhr.response));
       } else {
-        error(xhr.status, xhr.responseText);
+        error({
+          code: xhr.status,
+          message: xhr.responseText
+          });
       }
     }
   }
 
-  xhr.open('GET', 'https://randomuser.me/api/?results=3&gender=' + pp, true);
+  xhr.open('GET', 'https://randomuser.me/api/?results=3&gender=' + res, true);
 
   xhr.send();
 }
 
-requestForUsers('male', su, er);
+function sum(){
+  if (Array.isArray(male) && Array.isArray(female)) {
+    const totalArr = [...male, ...female];
 
-requestForUsers('female', su, er);
+    console.log(totalArr);
+    printHtml(totalArr);
+  }
+};
+
+requestForUsers('male',function (mal) {
+  male = mal;
+  sum();
+}, errorFn);
+
+requestForUsers('female', function (fem) {
+  female = fem;
+  sum();
+}, errorFn );
+
