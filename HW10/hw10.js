@@ -1,45 +1,30 @@
 'use strict'
 
-const requestForUsers = function (success, error) {
+let su = function (x) {
+};
+let er = function (a, b) {
+};
+
+const requestForUsers = function (pp, success, error) {
   const xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       if (xhr.status >= 200 && xhr.status < 300) {
         success(xhr.response);
-        // console.log(xhr.response);
 
         console.log(JSON.parse(xhr.response));
       } else {
-        error();
+        error(xhr.status, xhr.responseText);
       }
     }
   }
 
-  xhr.open('GET', 'https://randomuser.me/api/?results=3&gender=male', true);
+  xhr.open('GET', 'https://randomuser.me/api/?results=3&gender=' + pp, true);
 
   xhr.send();
 }
-requestForUsers(function (uuu) {});
 
-const requestForUsers1 = function (success, error) {
-  const xhr = new XMLHttpRequest();
+requestForUsers('male', su, er);
 
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        success(xhr.response);
-        // console.log(xhr.response);
-
-        console.log(JSON.parse(xhr.response));
-      } else {
-        error();
-      }
-    }
-  }
-
-  xhr.open('GET', 'https://randomuser.me/api/?results=3&gender=female', true);
-
-  xhr.send();
-}
-requestForUsers1(function (rrr) {});
+requestForUsers('female', su, er);
