@@ -4,6 +4,11 @@ const errorFn = function (err) {
   console.log(err);
 };
 
+const successFn = function ({results}) {
+  female = results;
+  sum();
+}
+
 let male;
 let female;
 
@@ -61,13 +66,8 @@ function sum(){
   }
 };
 
-requestForUsers('male',function (mal) {
-  male = mal;
-  sum();
-}, errorFn);
+requestForUsers('male',successFn, errorFn);
 
-requestForUsers('female', function (fem) {
-  female = fem;
-  sum();
-}, errorFn );
+requestForUsers('female', successFn, errorFn );
+
 
