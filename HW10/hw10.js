@@ -1,25 +1,31 @@
 'use strict'
 
+let male;
+let female;
+const conteiner = document.getElementsByClassName('conteiner')[0];
+
 const errorFn = function (err) {
   console.log(err);
 };
 
-const successFn = function ({results}) {
-  female = results;
-  sum();
-}
-
-let male;
-let female;
-
 function createList() {
-  return document.createElement('ul');
+  return  document.createElement('ul');
+   ul.classList.add('outer');
 };
 
-function createListItem({name, picture}) {
+function createListItem({name, picture, email, gender, login }) {
   const li = document.createElement('li');
-  li.innerText = `${name},${picture}`;
-
+  li.classList.add('user');
+  li.innerHTML = `<div   class="${gender}" >
+            <button type = "button" class = "user-btn.remove" data-id = "${login.uuid}">
+            X
+            </button>
+                      <div class="user__inner-info">
+                      <img src="${picture.large}" alt="user img">
+                      <h3 >${name.title} ${name.first} ${name.last}</h3>
+                      <p>${email}</p>
+                  </div>
+            </div>`;
   return li;
 };
 
@@ -31,8 +37,9 @@ function printHtml(arr) {
 
     ul.appendChild(li);
   });
-  document.body.appendChild(ul);
-}
+  conteiner.appendChild(ul);
+  document.getElementsByClassName('preloader')[0].remove();
+};
 
 const requestForUsers = function (res, success, error) {
   const xhr = new XMLHttpRequest();
@@ -40,7 +47,7 @@ const requestForUsers = function (res, success, error) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       if (xhr.status >= 200 && xhr.status < 300) {
-        success(xhr.response);
+        success(JSON.parse(xhr.response));
 
         console.log(JSON.parse(xhr.response));
       } else {
@@ -52,7 +59,7 @@ const requestForUsers = function (res, success, error) {
     }
   }
 
-  xhr.open('GET', 'https://randomuser.me/api/?results=3&gender=' + res, true);
+  xhr.open('GET', 'https://randomuser.me/api/?results=3&gender' + res);
 
   xhr.send();
 }
@@ -66,8 +73,17 @@ function sum(){
   }
 };
 
-requestForUsers('male',successFn, errorFn);
+requestForUsers('male',function ({results}) {
+  male = results;
+  sum();
+}, errorFn);
 
-requestForUsers('female', successFn, errorFn );
+requestForUsers('female', function ({results}) {
+  female = results;
+  sum();
+}, errorFn );
+
+
+
 
 
