@@ -4,30 +4,28 @@ let male;
 let female;
 const conteiner = document.getElementsByClassName('conteiner')[0];
 
-const errorFn = function (err) {
-  console.log(err);
-};
-
 function createList() {
   return  document.createElement('ul');
    ul.classList.add('outer');
-};
+}
 
 function createListItem({name, picture, email, gender, login }) {
   const li = document.createElement('li');
   li.classList.add('user');
   li.innerHTML = `<div   class="${gender}" >
-            <button type = "button" class = "user-btn.remove" data-id = "${login.uuid}">
+            <button type = "button" class = "user-btn_remove" data-id = "${login.uuid}">
             X
             </button>
+            <div class="user__inner">
+                <img src="${picture.large}" alt="user img">
                       <div class="user__inner-info">
-                      <img src="${picture.large}" alt="user img">
+
                       <h3 >${name.title} ${name.first} ${name.last}</h3>
                       <p>${email}</p>
                   </div>
             </div>`;
   return li;
-};
+}
 
 function printHtml(arr) {
   const ul = createList();
@@ -39,51 +37,51 @@ function printHtml(arr) {
   });
   conteiner.appendChild(ul);
   document.getElementsByClassName('preloader')[0].remove();
-};
+  let btn_remove = document.querySelectorAll('.user-btn_remove');
+  btn_remove.forEach( function(el) {
 
-const requestForUsers = function (res, success, error) {
-  const xhr = new XMLHttpRequest();
+      fetch('https://httpstat.us/200', {
+        method: 'post',
+        headers: {
+          "Content-type": "application/x-www-form-urlcoder"
+        },
+        body: `{id: "user.login.uuid"}`
+      })
+        .then(response => response.json())
+        .then(el.onclick = function (e) {
+          let user = e.target.closest('.user');
+          user.remove();
 
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        success(JSON.parse(xhr.response));
-
-        console.log(JSON.parse(xhr.response));
-      } else {
-        error({
-          code: xhr.status,
-          message: xhr.responseText
-          });
-      }
-    }
-  }
-
-  xhr.open('GET', 'https://randomuser.me/api/?results=3&gender' + res);
-
-  xhr.send();
+          console.log(e);
+        })
+        .catch(error => {
+          console.log('Request filed', error);
+        })
+    })
 }
 
-function sum(){
-  if (Array.isArray(male) && Array.isArray(female)) {
-    const totalArr = [...male, ...female];
+const a = fetch('https://randomuser.me/api/?results=3&gender=male');
+const b = fetch('https://randomuser.me/api/?results=3&gender=female');
 
-    console.log(totalArr);
-    printHtml(totalArr);
-  }
-};
+Promise.all([a,b])
+  .then(
+    res => {
+      const users = res.map(item => item.json());
 
-requestForUsers('male',function ({results}) {
-  male = results;
-  sum();
-}, errorFn);
+      return Promise.all(users);
+    }
+  )
+  .then(
+    res => {
+      console.log('Raw Data: ', res);
 
-requestForUsers('female', function ({results}) {
-  female = results;
-  sum();
-}, errorFn );
+      const [male, female] = res;
+      const union = [
+        ...male.results,
+        ...female.results
+      ];
+      printHtml(union);
 
-
-
-
-
+      console.log('Union of the arrays: ', union);
+    }
+ );
