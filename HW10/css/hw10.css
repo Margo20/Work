@@ -9,12 +9,6 @@ body {
     margin: 0 auto;
 }
 
-.outer {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -25px;
-}
-
 .user {
     padding: 0 30px;
     width: 33.3333%;
@@ -66,3 +60,18 @@ img {
     display: flex;
     justify-content: center;
    }
+
+.preloder-img {
+    height: 250px;
+    width: 250px;
+}
+
+
+/*Через делегирование повесить на кнопку с крестиком событие click для удаления пользователя.*/
+
+/*Запрос на удаление слать на этот эндпойнт*/
+/*https://httpstat.us/200*/
+
+/*Это будет post-запрос, телом которого будет JSON с полем id. Значение для поля id берётся, из user.login.uuid*/
+
+/*Когда запрос на удаление пользователя вернулся с положительным ответом, следует удалить элемент списка из DOM.*/

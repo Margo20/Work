@@ -1,17 +1,15 @@
 body {
 	height: auto;
-	padding: 50px;
+	padding: 35px;
 	font-family: sans-serif;
 	background: #1e4542;
 }
 
 .b-shooter {
 	background-image: url(../img/cemetery-cartoon-background.jpg);
-	background-repeat: no-repeat;
-	background-position: center center;
 	background-size: cover;
-	max-width: 1000px;
-	height: 850px;
+	max-width: 800px;
+	height: 600px;
 	margin: 0 auto;
 	position: relative;
 	overflow: hidden;
@@ -24,7 +22,7 @@ body {
 	transform: translate(345px, 180px);
 	transition: transform .2s ease-in-out;
 	pointer-events: none;
-	z-index: 1;
+	z-index: 3;
 }
 
 .b-shooter__img-aim {
@@ -48,48 +46,130 @@ body {
 	transition: opacity;
 	pointer-events: none;
 	animation: ghost-movements 2s ease-out infinite;
+	z-index: 2;
 }
 
 .b-shooter__health {
 	position: absolute;
 	height: 50px;
-	width: 180px;
-	flex-direction: column;
-	flex-wrap: wrap;
+	width: 172px;
 	display: flex;
 	right: 0;
 	bottom: 0;
-	background-color: #000000;
-	margin:  10px;
-	border-radius: 20px;
-	/*opacity: .5;*/
-	align-items: center;
+	background-color: rgba(0, 0,0, .5);
+	border-radius: 50px;
 	justify-content: center;
+	padding: 10px;
+	margin-bottom: 5px;
+	margin-right: 7px;
+}
+
+._shootToGhost {
+	opacity: 0.2;
+	transform: rotate(180deg);
 }
 
 .b-shooter__health-icon {
-	height: 40px;
-	width: 40px;
+	width: 32px;
 	fill: #e53935;
+}
+
+._lostHealth {
+	transform: scale(.85);
+	fill: rgba(90, 87, 98, .7)
+}
+
+._blinkHealthBar {
+	animation: blink 2s linear infinite;
+}
+
+.b-shooter__health-icon:nth-child(n+2) {
+	margin-left: 20px;
 }
 
 .b-shooter__progress {
 	position: absolute;
-	height: 750px;
+	height: 500px;
 	width: 40px;
 	display: flex;
 	flex-wrap: wrap;
-	background-color: #000000;
-	margin: 50px 0 0 10px;
-	border-radius: 20px;
+	margin: 30px 0 0 6px;
+	border-radius: 50px;
 	opacity: .5;
-	align-items: center;
+	align-content: center;
 	justify-content: center;
+	background-color: rgba(0, 0,0, .5);
 }
 
 .b-shooter__progress-icon {
-	height: 45px;
-	width: 35px;
+	width: 27px;
+	transition: opacity 1s ease-out;
+}
+
+.b-shooter__progress-icon:nth-child(n+2) {
+	margin-top: 21px;
+}
+
+.b-shooter__game-over {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none;
+	align-content: center;
+	justify-content: center;
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+._win .b-shooter__game-over,
+._lose .b-shooter__game-over {
+	opacity: 1;
+	pointer-events: all;
+	transition: opacity 2s ease-out;
+}
+
+._win .b-shooter__game-over {
+	background-color: #fff;
+	color: black;
+}
+
+._lose .b-shooter__game-over {
+	background-color: #000;
+	color: #fff;
+}
+
+._lose .b-shooter__img-ghost {
+	position: absolute;
+	width: 120px;
+	height: 120px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 0;
+	animation: ghost-scale 7s .1s cubic-bezier(0, 0.53, 0.2, 0.96) forwards;
+
+}
+
+.b-shooter__game-over h2 {
+	font-size: 90px;
+	letter-spacing: 15px;
+}
+
+.b-shooter__game-over p {
+	margin-top: 10px;
+	font-size: 45px;
+}
+
+._win .b-shooter__progress,
+._lose .b-shooter__progress,
+._win .b-shooter__health,
+._lose .b-shooter__health,
+._lose .b-shooter__aim {
+	visibility: hidden;
 }
 
 @keyframes ghost-movements {
@@ -117,4 +197,24 @@ body {
 		transform: scale(1) translateY(0);
 	}
 
+}
+
+@keyframes blink {
+	0%, 100% {
+		opacity: 1;
+	}
+
+	10%, 30%, 50%, 70%, 90% {
+		opacity: .7;
+	}
+
+	20%, 40%, 60%, 80% {
+		opacity: .5;
+	}
+}
+
+@keyframes ghost-scale {
+	to {
+		transform: scale(17);
+	}
 }
