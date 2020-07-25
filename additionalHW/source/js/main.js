@@ -13,15 +13,15 @@
 
 
   cemetery.addEventListener('click', function(e) {
+  if (
+    ghost.style['animation-play-state'] === 'paused' || isGameOver ) {
+    return;
+  };
+
       const calcY = e.currentTarget.offsetHeight - aim.offsetHeight;
       const calcX = e.currentTarget.offsetWidth - aim.offsetWidth;
       const y = e.offsetY - imgAim.height / 2;
       const x = e.offsetX - imgAim.width / 2;
-
-      if (
-        ghost.style['animation-play-state'] === 'paused' || isGameOver ) {
-        return;
-      };
 
       if (y >= calcY) {
         y = calcY;
@@ -38,20 +38,17 @@
   });
 
   document.addEventListener('keydown', (e) => {
+   if (e.code === 'Space') {
     e.preventDefault();
-
-    if (e.code === 'Space') {
       imgAim.style.transform = 'scale(.9)';
     };
   });
 
   document.addEventListener('keyup', (e) => {
-    e.preventDefault();
-
     if (e.code === 'Enter' && isGameOver) {
-      reset();
+    return reset();
     }
-
+  if (e.code !== 'Space' || isGameOver) { return; };
     if (e.code === 'Space') {
       const domRect = imgAim.getBoundingClientRect();
       const domGhost = ghost.getBoundingClientRect();
@@ -112,6 +109,7 @@
 
     if (ghost.style.display === 'none') {
       ghost.style.display = '';
+    setRandomCoords();
 
     } else {
       setRandomCoords();
@@ -156,12 +154,12 @@
 
   const dropTheCurtain = (isWin) => {
     if (isWin) {
-      bShooterTitle.innerText = "YOU WIN";
+    bShooterTitle.innerText = 'YOU WIN';
       cemetery.classList.add('_win')
     };
 
     if (!isWin) {
-      bShooterTitle.innerText = "YOU LOSE";
+    bShooterTitle.innerText = 'YOU LOSE';
       cemetery.classList.add('_lose');
       ghost.removeAttribute('style');
     };
