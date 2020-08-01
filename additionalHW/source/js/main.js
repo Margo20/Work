@@ -12,11 +12,11 @@ const bShooterGameOver = document.querySelector('.b-shooter__game-over');
 const bShooterTitle = document.querySelector('.b-shooter__game-over-title');
 
 
-cemetery.addEventListener('click', function(e) {
+cemetery.addEventListener('click', (e) => {
 if (
   ghost.style['animation-play-state'] === 'paused' || isGameOver ) {
   return;
-};
+}
 
   const calcY = e.currentTarget.offsetHeight - aim.offsetHeight;
   const calcX = e.currentTarget.offsetWidth - aim.offsetWidth;
@@ -41,17 +41,17 @@ document.addEventListener('keydown', (e) => {
  if (e.code === 'Space') {
     e.preventDefault();
     imgAim.style.transform = 'scale(.9)';
-  };
+  }
 });
 
 document.addEventListener('keyup', (e) => {
-  if (e.code === 'Enter' && isGameOver) {
+  if (e.key === 'Enter' && isGameOver) {
     return reset();
   }
 
   if (e.code !== 'Space' || isGameOver) {
     return;
-  };
+  }
 
   const domRect = imgAim.getBoundingClientRect();
   const domGhost = ghost.getBoundingClientRect();
@@ -90,10 +90,10 @@ document.addEventListener('keyup', (e) => {
           }
         }, delayToReset);
       markProgress();
-    };
+    }
 });
 
-function setRandomCoords() {
+setRandomCoords = () => {
   const limitX = cemetery.offsetWidth - ghost.offsetWidth;
   const limitY = cemetery.offsetHeight - ghost.offsetHeight;
   const x = Math.floor(Math.random() * (limitX + 1));
@@ -107,7 +107,7 @@ setInterval(() => {
   if (
     ghost.style['animation-play-state'] === 'paused' || isGameOver ) {
     return;
-  };
+  }
 
   if (ghost.style.display === 'none') {
     ghost.style.display = '';
@@ -116,7 +116,7 @@ setInterval(() => {
   } else {
     setRandomCoords();
     markLifeStatus();
-  };
+  }
 }, 3000);
 
 const markProgress = () => {
@@ -126,20 +126,19 @@ const markProgress = () => {
 
       if (i === progressIcon.length - 1) {
         isGameOver = true;
-      };
+      }
 
       break;
-    };
-  };
+    }
+  }
 };
-
 
 const markLifeStatus = () => {
   if (bShooterHealth.classList.contains('_blinkHealthBar')) {
     isGameOver = true;
     dropTheCurtain(false)
     return;
-  };
+  }
 
   for (let i = 0; i < health.length; i++) {
     if (!health[i].classList.contains('_lostHealth')) {
@@ -147,11 +146,11 @@ const markLifeStatus = () => {
 
       if (i === health.length - 1) {
         bShooterHealth.classList.add('_blinkHealthBar');
-      };
+      }
 
       break;
-    };
-  };
+    }
+  }
 }
 
 const dropTheCurtain = (isWin) => {
@@ -162,7 +161,7 @@ const dropTheCurtain = (isWin) => {
     bShooterTitle.innerText = 'YOU LOSE';
     cemetery.classList.add('_lose');
     ghost.removeAttribute('style');
-  };
+  }
 };
 
 const reset = () => {
@@ -179,12 +178,12 @@ const reset = () => {
   for (let i = 0; i < progressIcon.length; i++) {
     if (progressIcon[i].classList.contains('_shootToGhost')) {
         progressIcon[i].classList.remove('_shootToGhost');
-    };
-  };
+    }
+  }
 
   for (let i = 0; i < health.length; i++) {
     if (health[i].classList.contains('_lostHealth')) {
         health[i].classList.remove('_lostHealth');
-    };
-  };
+    }
+  }
 }
